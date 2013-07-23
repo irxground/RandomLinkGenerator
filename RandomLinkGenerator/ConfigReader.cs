@@ -21,6 +21,8 @@ namespace RandomLinkDownloader {
 
         public static int ConnectionRetry { get { return GetIntOr("ConnectionRetry", 0); } }
 
+        public static int MaxDepth { get { return Math.Max(GetIntOr("MaxDepth", 0), 1); } }
+
         public static WebProxy ConnectionProxy {
             get {
                 var str = Get("ConnectionProxy");

@@ -22,7 +22,8 @@ namespace RandomLinkDownloader {
             Uri previousURL = null;
 
             while (true) {
-                createURL = GenerateUrl(2, previousURL);
+                int depth = rand.Next(1, ConfigReader.MaxDepth);
+                createURL = GenerateUrl(depth, previousURL);
                 previousURL = createURL;
                 yield return createURL;
             }
@@ -60,10 +61,10 @@ namespace RandomLinkDownloader {
 
                     if (createURL == previousURL) continue;
                     if (depth > 1) {
-                        return createURL;
+                        return GenerateUrl(depth - 1, previousURL, createURL);
                     }
                     else {
-                        return GenerateUrl(depth - 1, previousURL, createURL);
+                        return createURL;
                     }
                 }
                 catch (WebException) {
