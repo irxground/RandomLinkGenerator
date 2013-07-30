@@ -20,7 +20,8 @@ namespace RandomLinkDownloader {
             var gen = new Generator();
             using (var writer = new StreamWriter(ConfigReader.OutputFilePath)) {
                 int count = 0;
-                foreach (var url in gen.EnumerateRandomLinks().Take(num)) {
+                foreach (var uri in gen.EnumerateRandomLinks().Take(num)) {
+                    var url = Uri.EscapeUriString(uri.ToString());
                     writer.WriteLine(url);
                     writer.Flush();
                     count++;

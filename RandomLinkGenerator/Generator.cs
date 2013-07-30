@@ -94,7 +94,7 @@ namespace RandomLinkDownloader {
         }
 
         private bool IsOnlyOneByteChar(string str) {
-            byte[] byte_data = Encoding.GetEncoding(932).GetBytes(str);
+            byte[] byte_data = Encoding.UTF8.GetBytes(str);
             return (byte_data.Length == str.Length);
         }
     }

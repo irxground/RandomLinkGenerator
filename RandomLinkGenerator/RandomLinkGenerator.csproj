@@ -56,6 +56,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\changelog.txt">
+      <Link>changelog.txt</Link>
+    </Content>
     <Content Include="seed_url.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
