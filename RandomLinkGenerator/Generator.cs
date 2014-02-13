@@ -23,9 +23,26 @@ namespace RandomLinkDownloader {
 
             while (true) {
                 int depth = rand.Next(1, ConfigReader.MaxDepth);
-                createURL = GenerateUrl(depth, previousURL);
+                try {
+                    createURL = GenerateUrl(depth, previousURL);
+                }
+                catch (Exception e) {
+                    WriteError(e);
+                    continue;
+                }
                 previousURL = createURL;
                 yield return createURL;
+            }
+        }
+
+        private static void WriteError(Exception e) {
+            var before = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            try {
+                Console.Error.WriteLine(e.GetType().Name + ": " + e.Message);
+            }
+            finally {
+                Console.ForegroundColor = before;
             }
         }
 
